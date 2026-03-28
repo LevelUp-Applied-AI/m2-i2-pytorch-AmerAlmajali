@@ -44,6 +44,8 @@ The loss decreased quickly during the first 20 epochs, then gradually stabilized
 │   └── housing.csv       ← Dataset
 ├── predictions.csv       ← Model predictions (generated after training)
 ├── README.md             ← Required: setup, overview, project structure
+├── loss_curve.png        ← Loss vs epochs
+├── prediction_plot.png   ← actual valus VS predected Value
 
 ## Output
 predictions.csv contains:
@@ -53,5 +55,27 @@ predicted — Model predictions
 ## Deactivate Virtual Environment
 deactivate
 
----
 
+## Overfitting Discussion
+
+After training the Housing Price Prediction model, we compared the metrics on the training and test sets to evaluate performance:
+
+Metric	Train	Test
+MAE	6114.55 JOD	5313.50 JOD
+R²	0.7280	0.6615
+Analysis
+Train vs. Test Performance:
+The training and test MAE values are fairly close, and the R² scores are reasonably high on both sets. This suggests that the model is not severely overfitting — it generalizes fairly well to unseen data.
+Visual Inspection:
+The scatter plot of predicted vs. actual prices shows most points near the line of perfect prediction, supporting the numerical results.
+
+Next Steps
+To further improve the model and prevent potential overfitting in more complex scenarios:
+
+Try more advanced architectures:
+Add more layers or neurons.
+Experiment with activation functions or dropout.
+
+Hyperparameter Tuning:
+Adjust learning rate schedule.
+Experiment with batch sizes or optimizers.
