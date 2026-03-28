@@ -30,6 +30,16 @@ class HousingModel(nn.Module):
         return x
 
 
+def mae(y_true, y_pred):
+    return np.mean(np.abs(y_true - y_pred))
+
+
+def r2(y_true, y_pred):
+    ss_res = np.sum((y_true - y_pred) ** 2)
+    ss_tot = np.sum((y_true - np.mean(y_true)) ** 2)
+    return 1 - ss_res / ss_tot
+
+
 # ─── Main Script ─────────────────────────────────────────────────────────────
 def main():
     # 1. Load Data
@@ -110,14 +120,6 @@ def main():
     y_train_pred = y_train_pred.flatten()
     y_test_pred = y_test_pred.flatten()
 
-    def mae(y_true, y_pred):
-        return np.mean(np.abs(y_true - y_pred))
-
-    def r2(y_true, y_pred):
-        ss_res = np.sum((y_true - y_pred) ** 2)
-        ss_tot = np.sum((y_true - np.mean(y_true)) ** 2)
-        return 1 - ss_res / ss_tot
-
     print(
         f"Train MAE: {mae(y_train_np, y_train_pred):.2f}, R²: {r2(y_train_np, y_train_pred):.4f}"
     )
@@ -147,14 +149,14 @@ def main():
 
     plt.colorbar(scatter, ax=ax)
     plt.show()
-    plt.close(fig)
+    plt.close()
     # ─── Loss Curve ─────────────────────────────────────────────────────────
     plt.plot(losses)
     plt.title("Training Loss")
     plt.xlabel("Epoch")
     plt.ylabel("Loss")
     plt.show()
-    plt.close(fig)
+    plt.close()
 
 
 if __name__ == "__main__":
