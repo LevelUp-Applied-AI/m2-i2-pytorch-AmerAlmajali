@@ -283,6 +283,11 @@ def main():
     )
 
     # ─── Plot Predictions ───────────────────────────────────────────────────
+    results_df = pd.DataFrame(
+        {"actual": y_test_np.flatten(), "predicted": y_test_pred.flatten()}
+    )
+    results_df.to_csv("predictions.csv", index=False)
+    print("Saved predictions.csv")
     fig, ax = plt.subplots(figsize=(10, 8))
     errors = np.abs(y_test_pred - y_test_np)
 
