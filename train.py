@@ -45,7 +45,7 @@ def main():
         "distance_to_center_km",
     ]
 
-    df = df.sample(frac=1, random_state=42).reset_index(drop=True)
+    # df = df.sample(frac=1, random_state=42).reset_index(drop=True)
 
     X = df[feature_cols]
     y = df[["price_jod"]]
